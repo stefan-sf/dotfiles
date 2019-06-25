@@ -1,0 +1,21 @@
+#!/bin/zsh
+
+set -e
+
+git clone --bare https://github.com/stefan-sf/dotfiles.git ~/.dotfilesgit
+git --git-dir=$HOME/.dotfilesgit/ --work-tree=$HOME checkout
+git --git-dir=$HOME/.dotfilesgit/ --work-tree=$HOME config --local status.showUntrackedFiles no
+
+mkdir -p $HOME/.vim/{bundle,swap,undo}
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim -u ~/.vim/vundle.vim -c PluginInstall -c qall!
+
+git clone --recursive https://github.com/stefan-sf/prezto.git ~/.zprezto
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+  rm -f "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
+
+mkdir ~/.zplugins
+git clone https://github.com/arzzen/calc.plugin.zsh.git ~/.zplugins/calc.plugin.zsh
