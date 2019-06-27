@@ -164,6 +164,7 @@ cabbrev mak <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'make!' : 'mak')<CR>
 
 " restore cursor to file position in previous editing session
 " http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
+set viminfo='10,\"100,:20,%,n~/.vim/viminfo
 function! ResCur()
   if line("'\"") <= line("$")
     normal! g`"
