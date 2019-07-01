@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+# curl https://raw.githubusercontent.com/stefan-sf/dotfiles/master/.dfg.init | /bin/zsh
+
 set -e
 
 git clone --bare https://github.com/stefan-sf/dotfiles.git ~/.dotfilesgit
