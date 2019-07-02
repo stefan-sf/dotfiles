@@ -3,6 +3,7 @@
 # curl https://raw.githubusercontent.com/stefan-sf/dotfiles/master/.dfg.init | /bin/zsh
 
 set -e
+set -x
 
 git clone --bare https://github.com/stefan-sf/dotfiles.git ~/.dotfilesgit
 git --git-dir=$HOME/.dotfilesgit/ --work-tree=$HOME checkout
@@ -10,7 +11,7 @@ git --git-dir=$HOME/.dotfilesgit/ --work-tree=$HOME config --local status.showUn
 
 mkdir -p $HOME/.vim/{bundle,swap,undo}
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim -u ~/.vim/vundle.vim -c PluginInstall -c qall!
+vim -T dumb -n -es -u ~/.vim/vundle.vim -c PluginInstall -c qall!
 
 git clone --recursive https://github.com/stefan-sf/prezto.git ~/.zprezto
 setopt EXTENDED_GLOB
