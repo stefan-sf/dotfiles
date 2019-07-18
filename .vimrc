@@ -51,6 +51,7 @@ set title
 
 set directory=~/.vim/swap//
 set undodir=~/.vim/undo//
+set viminfofile=~/.vim/viminfo
 
 " set list
 " set listchars=tab:▸\ "
@@ -164,7 +165,6 @@ cabbrev mak <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'make!' : 'mak')<CR>
 
 " restore cursor to file position in previous editing session
 " http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
-set viminfo='10,\"100,:20,%,n~/.vim/viminfo
 function! ResCur()
   if line("'\"") <= line("$")
     normal! g`"
@@ -234,6 +234,12 @@ autocmd BufNewFile,BufRead * setlocal formatoptions-=o " disable comment continu
 hi SyntasticErrorSign term=bold cterm=bold ctermfg=1 ctermbg=0 guifg=White guibg=Red
 hi SyntasticWarningSign ctermbg=0
 
+let w:toggleFold = 0
+function ToggleFold()
+  let l:curr = &foldcolumn
+  let &foldcolumn = w:toggleFold
+  let w:toggleFold = l:curr
+endfunction
 
 let mapleader = ","
 nnoremap <leader>c :w<CR>:Dispatch<CR>
@@ -241,6 +247,7 @@ nnoremap <leader>d :w<CR>:Dispatch!<CR>
 nnoremap <leader>s :w<CR>
 autocmd FileType rust let b:dispatch = 'cargo build'
 " autocmd FileType rust autocmd BufWritePost * :Dispatch
+nnoremap <leader>t :set number!<CR>:call ToggleFold()<CR>
 
 " Enable folding with the spacebar
 nnoremap <space> za
