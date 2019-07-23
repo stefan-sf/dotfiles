@@ -1,0 +1,8 @@
+[color]
+	ui = true
+[push]
+	default = simple
+[rebase]
+	autostash = true
+[include]
+	path = ~/.gitconfig.local
