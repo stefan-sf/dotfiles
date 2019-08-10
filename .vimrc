@@ -177,6 +177,7 @@ augroup resCur
 augroup END
 
 filetype plugin indent on
+autocmd FileType tex setlocal autoindent nocindent nosmartindent indentexpr=
 set pastetoggle=<F2>
 
 " toggle highlighting the most-recently-found search text
