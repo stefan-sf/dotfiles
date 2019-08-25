@@ -61,6 +61,17 @@ set undofile
 
 set hidden " allows switching to another buffer with unsaved buffer open
 
+set spelllang=en_us
+function! SetSpell()
+  set spell
+  hi SpellBad cterm=underline ctermfg=red
+  hi SpellBad gui=undercurl guifg=red
+endfunction
+function! UnsetSpell()
+  set spell&
+  hi clear SpellBad
+endfunction
+
 set foldmethod=syntax
 " set foldmethod=indent
 set foldlevel=99
