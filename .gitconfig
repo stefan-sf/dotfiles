@@ -6,3 +6,5 @@
 	autostash = true
 [include]
 	path = ~/.gitconfig.local
+[log]
+	abbrevCommit = true
