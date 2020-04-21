@@ -10,3 +10,8 @@
 	abbrevCommit = true
 [alias]
 	lol = log --pretty=format:'%C(yellow)%h%d%Creset%n%C(green)%an   %ai%Creset%n%C(cyan)%cn   %ci%Creset%n%n%w(,4,4)%s%n%n%b%n%N'
+[advice]
+	detachedHead = false
+[sendmail]
+	suppresscc = self
+	confirm = always
