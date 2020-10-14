@@ -259,7 +259,7 @@ nnoremap <leader>d :w<CR>:Dispatch!<CR>
 nnoremap <leader>s :w<CR>
 autocmd FileType rust let b:dispatch = 'cargo build'
 " autocmd FileType rust autocmd BufWritePost * :Dispatch
-nnoremap <leader>t :set number!<CR>:call ToggleFold()<CR>
+nnoremap <leader>t :set number!<CR>:call ToggleFold()<CR>:GitGutterToggle<CR>
 
 " Enable folding with the spacebar
 nnoremap <space> za
