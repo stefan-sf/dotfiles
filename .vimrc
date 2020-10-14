@@ -72,12 +72,12 @@ function! UnsetSpell()
   hi clear SpellBad
 endfunction
 
-set foldmethod=syntax
-" set foldmethod=indent
-set foldlevel=99
-set foldcolumn=2
-let g:xml_syntax_folding=1
-let javaScript_fold=1
+" set foldmethod=syntax
+" " set foldmethod=indent
+" set foldlevel=99
+" set foldcolumn=2
+" let g:xml_syntax_folding=1
+" let javaScript_fold=1
 
 let g:asyncomplete_remove_duplicates=1
 " let g:asyncomplete_smart_completion=1
