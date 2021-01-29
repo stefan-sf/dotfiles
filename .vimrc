@@ -204,6 +204,8 @@ let g:solarized_underline=1        " 1|0 show underlines
 syntax on
 set background=dark
 colorscheme solarized
+" fix gitgutter https://github.com/airblade/vim-gitgutter/issues/696
+highlight! link SignColumn LineNr
 
 
 " ervandew/supertab
