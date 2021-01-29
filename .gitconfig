@@ -15,3 +15,5 @@
 [sendemail]
 	suppresscc = self
 	confirm = always
+[init]
+	defaultBranch = main
