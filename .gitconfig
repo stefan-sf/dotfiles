@@ -1,5 +1,7 @@
 [color]
 	ui = true
+[core]
+	pager = ~/.diff-so-fancy/diff-so-fancy | less -RFX
 [push]
 	default = simple
 [rebase]
