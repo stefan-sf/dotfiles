@@ -189,12 +189,6 @@ augroup END
 
 filetype plugin indent on
 autocmd FileType tex setlocal autoindent nocindent nosmartindent indentexpr=
-set pastetoggle=<F2>
-
-" toggle highlighting the most-recently-found search text
-nnoremap \th :set invhls hls?<CR>
-nmap <F3> \th
-imap <F3> <C-O>\th
 
 let g:solarized_contrast="high"    " default value is normal
 let g:solarized_visibility="high"  " default value is normal
@@ -250,19 +244,14 @@ hi SyntasticWarningSign ctermbg=0
 
 let w:toggleFold = 0
 function ToggleFold()
+  set number!
   let l:curr = &foldcolumn
   let &foldcolumn = w:toggleFold
   let w:toggleFold = l:curr
+  GitGutterToggle
 endfunction
 
 let mapleader = ","
-nnoremap <leader>c :w<CR>:Dispatch<CR>
-nnoremap <leader>d :w<CR>:Dispatch!<CR>
-nnoremap <leader>s :w<CR>
-autocmd FileType rust let b:dispatch = 'cargo build'
-" autocmd FileType rust autocmd BufWritePost * :Dispatch
-nnoremap <leader>t :set number!<CR>:call ToggleFold()<CR>:GitGutterToggle<CR>
-
 " Enable folding with the spacebar
 nnoremap <space> za
 
@@ -270,6 +259,20 @@ nnoremap <space> za
 inoremap <s-tab> <c-v><tab>
 
 inoremap <C-c> <Esc>
+
+nnoremap <leader>g g<C-]>
+vnoremap <leader>g g<C-]>
+nnoremap <leader>t <C-t>
+vnoremap <leader>t <C-t>
+
+nnoremap <leader>d :bprevious<CR>
+nnoremap <leader>f :bnext<CR>
+
+set pastetoggle=<leader>p
+
+" toggle highlighting the most-recently-found search text
+nnoremap \th :set invhls hls?<CR>
+nmap <leader>h \th
 
 " if executable('clangd')
 "     au User lsp_setup call lsp#register_server({
