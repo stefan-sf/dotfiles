@@ -236,6 +236,8 @@ au FileType ocaml nnoremap <localleader>l :Locate<cr>
 " TeX class files
 autocmd BufNewFile,BufRead *.cls set syntax=tex
 
+autocmd BufNewFile,BufRead */gcc/config/*/*.md set filetype=lisp
+
 " this needs to be at the end since it's (re)set when compatible is (re)set
 autocmd BufNewFile,BufRead * setlocal formatoptions-=o " disable comment continuation for o/O (use enter)
 
