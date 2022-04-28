@@ -21,3 +21,4 @@ for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
 done
 
 git clone https://github.com/so-fancy/diff-so-fancy.git ~/.diff-so-fancy
+git clone https://github.com/junegunn/fzf.git ~/.fzf
