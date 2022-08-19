@@ -15,7 +15,6 @@ Plugin 'VundleVim/Vundle.vim'
 " plugin on GitHub repo
 "" Plugin 'ShowTrailingWhitespace'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'ervandew/supertab'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-commentary'
 Plugin 'altercation/vim-colors-solarized'
@@ -34,10 +33,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_cmd = 'CtrlPMRU'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'bitc/vim-bad-whitespace'
-Plugin 'prabirshrestha/async.vim'
 Plugin 'prabirshrestha/vim-lsp'
-Plugin 'prabirshrestha/asyncomplete.vim'
-Plugin 'prabirshrestha/asyncomplete-lsp.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

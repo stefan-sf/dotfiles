@@ -245,12 +245,16 @@ hi SyntasticErrorSign term=bold cterm=bold ctermfg=1 ctermbg=0 guifg=White guibg
 hi SyntasticWarningSign ctermbg=0
 
 let w:toggleFold = 0
+let w:toggleSignColumn = "no"
 function ToggleFold()
   set number!
   let l:curr = &foldcolumn
   let &foldcolumn = w:toggleFold
   let w:toggleFold = l:curr
   GitGutterToggle
+  let l:tmp = &signcolumn
+  let &signcolumn = w:toggleSignColumn
+  let w:toggleSignColumn = l:tmp
 endfunction
 
 let mapleader = ","
@@ -276,16 +280,39 @@ set pastetoggle=<leader>p
 nnoremap \th :set invhls hls?<CR>
 nmap <leader>h \th
 
-" if executable('clangd')
-"     au User lsp_setup call lsp#register_server({
-"         \ 'name': 'clangd',
-"         \ 'cmd': {server_info->['clangd']},
-"         \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
-"         \ })
-"     autocmd FileType c setlocal omnifunc=lsp#complete
-"     autocmd FileType cpp setlocal omnifunc=lsp#complete
-"     autocmd FileType objc setlocal omnifunc=lsp#complete
-"     autocmd FileType objcpp setlocal omnifunc=lsp#complete
-"     autocmd FileType c nmap gd <plug>(lsp-definition)
-"     autocmd FileType cpp nmap gd <plug>(lsp-definition)
-" endif
+if executable('clangd')
+  au User lsp_setup call lsp#register_server({
+      \ 'name': 'clangd',
+      \ 'cmd': ['clangd'],
+      \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+      \ })
+
+  let g:lsp_diagnostics_echo_cursor = 1
+  let g:lsp_document_code_action_signs_enabled = 0
+  " let g:lsp_log_verbose = 1
+  " let g:lsp_log_file = expand('~/vim-lsp.log')
+
+  function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gs <plug>(lsp-document-symbol-search)
+    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> gr <plug>(lsp-references)
+    "nmap <buffer> gi <plug>(lsp-implementation)
+    "nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+    inoremap <buffer> <expr><c-f> lsp#scroll(+4)
+    inoremap <buffer> <expr><c-d> lsp#scroll(-4)
+  endfunction
+
+  augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+  augroup END
+endif
