@@ -34,6 +34,7 @@ let g:ctrlp_cmd = 'CtrlPMRU'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'bitc/vim-bad-whitespace'
 Plugin 'prabirshrestha/vim-lsp'
+Plugin 'mattn/vim-lsp-settings'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
