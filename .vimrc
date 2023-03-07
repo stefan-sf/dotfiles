@@ -1,4 +1,5 @@
-source ~/.vim/vundle.vim
+set nocompatible
+filetype plugin indent on
 
 autocmd FileType c setlocal commentstring=//\ %s
 
@@ -78,6 +79,9 @@ endfunction
 " set foldcolumn=2
 " let g:xml_syntax_folding=1
 " let javaScript_fold=1
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
 
 let g:asyncomplete_remove_duplicates=1
 " let g:asyncomplete_smart_completion=1
