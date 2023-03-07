@@ -1,17 +1,8 @@
 set nocompatible
-filetype plugin indent on
 
 autocmd FileType c setlocal commentstring=//\ %s
 
 if has("gui_running")
-  if has("gui_gtk2")
-    set guifont=Inconsolata:h12
-  elseif has("gui_macvim")
-    set guifont=Menlo\ Regular:h14
-  elseif has("gui_win32")
-    set guifont=Consolas:h11:cANSI
-  endif
-
   set guicursor+=a:blinkon0
   set lines=40 columns=170
 
@@ -73,15 +64,10 @@ function! UnsetSpell()
   hi clear SpellBad
 endfunction
 
-" set foldmethod=syntax
-" " set foldmethod=indent
-" set foldlevel=99
-" set foldcolumn=2
-" let g:xml_syntax_folding=1
-" let javaScript_fold=1
-
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#whitespace#skip_indent_check_ft =
+      \ {'cpp': ['indent', 'mixed-indent-file']}
 
 let g:asyncomplete_remove_duplicates=1
 " let g:asyncomplete_smart_completion=1
@@ -106,11 +92,11 @@ function! s:check_back_space() abort
     return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
-inoremap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ asyncomplete#force_refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" inoremap <silent><expr> <TAB>
+"   \ pumvisible() ? "\<C-n>" :
+"   \ <SID>check_back_space() ? "\<TAB>" :
+"   \ asyncomplete#force_refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 nnoremap <C-h> :LspHover<CR>
 
@@ -118,21 +104,6 @@ nnoremap <C-h> :LspHover<CR>
 " move cursor by display lines not lines defined by carriage return
 " noremap <silent> <Leader>w :call ToggleWrapLines()<CR>
 let w:toggleWrapLines = 0
-" function ToggleWrapLines()
-"    if w:toggleWrapLines == 1
-"       :noremap <Up> k
-"       :noremap! <Up> <C-O>k
-"       :noremap <Down> j
-"       :noremap! <Down> <C-O>j
-"       let w:toggleWrapLines = 0
-"    else
-"       :noremap <Up> gk
-"       :noremap! <Up> <C-O>gk
-"       :noremap <Down> gj
-"       :noremap! <Down> <C-O>gj
-"       let w:toggleWrapLines = 1
-"    endif
-" endfunction
 noremap <silent> <Leader>w :call ToggleWrap()<CR>
 function ToggleWrap()
   if w:toggleWrapLines == 1
@@ -204,11 +175,6 @@ set background=dark
 colorscheme solarized
 " fix gitgutter https://github.com/airblade/vim-gitgutter/issues/696
 highlight! link SignColumn LineNr
-
-
-" ervandew/supertab
-let g:SuperTabMappingForward = '<c-n>'
-let g:SuperTabDefaultCompletionType = "context"
 
 
 let g:syntastic_always_populate_loc_list = 1
