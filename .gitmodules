@@ -37,3 +37,9 @@
 [submodule ".vim/pack/default/start/vim-lsp-settings"]
 	path = .vim/pack/default/start/vim-lsp-settings
 	url = https://github.com/mattn/vim-lsp-settings.git
+[submodule ".diff-so-fancy"]
+	path = .diff-so-fancy
+	url = https://github.com/so-fancy/diff-so-fancy.git
+[submodule ".zprezto"]
+	path = .zprezto
+	url = https://github.com/stefan-sf/prezto.git
